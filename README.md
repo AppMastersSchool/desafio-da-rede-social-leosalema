@@ -1,23 +1,44 @@
-# Desafio da Rede Social - UFJF
-Desafio para participantes do treinamento React para Humanos - q4-2018
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# Instruções
+## Available Scripts
 
-- Clone este repositório para sua máquina
-- Desenvolva seu projeto (utilize como base seu código ou o [repositório do Baraky](https://github.com/jfbaraky/Treinamento-React-UFJF)
-- Ao final atualize o repositório com seu código desenvolvido
+In the project directory, you can run:
 
-# Desafios
+### `npm start`
 
-Como proposto em aula, apresentamos o desafio em 6 etapas. Se você concluir ao menos 2 destes, poderá participar do encontro de segunda-feira, dia 17. São eles:
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-1 - Poder selecionar um usuário através de algum elemento visual no alto da página (pode ser um select). Uma vez selecionado, ele passa a ser o autor dos novos posts;  
-2 - Usuário ser um objeto com id, nome, foto (url) e algo mais. Exibir a foto dele nos posts e no perfil;  
-3 - Ao clicar no nome do autor do post, abrir uma rota de perfil dele (certamente será necessário ter um id único por autor);  
-4 - Usar componentes visuais de terceiros, para deixar a aplicação mais legal. Usaremos o Material UI na sexta, mas pode incluir outros;  
-5 - Perfil do usuário exibir os posts dele;  
-6 - Mover todo acesso a dados para uma classe Storage, que terá métodos como .getPosts(), getPost(id), savePosts(posts), savePost(post), e assim ao longo das views não ter mais referência ao localstorage, só referências a nova class Storage.
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
 
-O prazo pra você enviar o projeto devolta pra este seu repositório é 17 as 5h da manhã. :)
+### `npm test`
 
-Os alunos que enviarem, receberão antes das 12h de do dia 17 um email de convite confirmando o encontro. 
+Launches the test runner in the interactive watch mode.<br>
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `npm run build`
+
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.<br>
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).

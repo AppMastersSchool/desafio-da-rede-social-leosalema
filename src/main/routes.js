@@ -9,8 +9,8 @@ export default props => (
     <BrowserRouter>
         <Switch>
             <Route path='/' component={Login} exact/>
-            <Route path='/timeline' component={PostList} />
-            <Route path='/profile' component={Profile} />
+            <Route path='/timeline/' component={PostList} />
+            <Route path='/profile/:id' component={Profile} />
             <Route path='*' component={PageNFound} />
         </Switch>
     </BrowserRouter>

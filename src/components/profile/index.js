@@ -1,26 +1,36 @@
 import React, { Component } from 'react'
-// import dados from '../../dados.json'
+import { getPost } from '../../common/storage'
+import PostList from '../post/postList'
 
 class Profile extends Component {
-  
-    // mountProfile() {
-    //     return dados.profile.map(profile => (
-    //       <div key={profile.id}>
-    //         <h1>{profile.name}</h1>
-    //         <img src={profile.img_photo} style={{width: 80, borderRadius: '50%'}} alt=''/>
-    //         <p>Idade: {profile.age} anos</p>
-    //       </div>
-    //     ))
-    //   }
-      render() {
-        // console.log(this.props)
-        return (
-          <div className="App">
-            
-            eu
+    constructor(props) {
+      super(props)
+
+      this.state = { profile: null }
+    }
+
+    componentDidMount() {
+      this.setState({ profile: getPost(this.props.match.params.id) })
+    }
+
+    render() {
+      const profile = this.state.profile
+      if (profile === null)
+        return <div>Loading...</div>
+      return (
+        <div className="App">
+          <div>
+            <h1>{profile.name}</h1>
+            <img src={profile.img_photo} style={{width: '80px', borderRadius: '25%'}} alt=''/>
+            <p>Idade: {profile.age} anos</p>
           </div>
-        );
-      }
+          <hr />
+          <div>
+            <PostList idProfile={profile.id}/>
+          </div>
+        </div>
+      );
+    }
 }
 
 export default Profile

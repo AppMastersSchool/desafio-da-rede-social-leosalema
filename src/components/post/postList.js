@@ -1,5 +1,8 @@
+// Criar uma forma do postList ter o id do usuario assim que ele clicar no login
 import React, { Component } from 'react'
-import { getAll } from '../../common/storage'
+import { getPosts } from '../../common/storage'
+import Post from './'
+import PostCreate from './postCreate'
 
 class PostList extends Component {
     constructor(props){
@@ -9,40 +12,61 @@ class PostList extends Component {
     }
 
     componentDidMount() {
-        const data = getAll()
-        console.log(data)
-        this.setState({ list: data.post, profiles: data.profile }, () => console.log(this.state))
+        const data = getPosts()
+        this.setState({ list: data.post, profiles: data.profile })
     }
 
-    clickPost() {
-        this.props.history.push('/profile/')
+    onNavigate(profiles) {
+        this.props.history.push(`/profile/${profiles.id}`)
     }
 
     readPosts() {
         return this.state.list.map(post => {
-            const profile = this.state.profiles.filter(idProfile => (idProfile.id === post.id))
+            const profile = this.state.profiles.filter(idProfile => (idProfile.id === post.id)).pop()
             return (
-                <div key={post.time}>
-                    <p>{post.post}</p>
-                    <p onClick={this.clickPost.bind(this)}>{profile[0].name}</p>
-                    <img 
-                        src={profile[0].img_photo} 
-                        style={{width: 30, borderRadius: '50%'}} 
-                        alt=''
-                        onClick={this.clickPost.bind(this)}
-                    />
-                </div>
+                <Post 
+                    key={post.time} 
+                    post={post} 
+                    profile={profile}
+                    onNavigate={() => this.onNavigate(profile)}
+                />
             )
         })
-        
+    }
+
+    readMyPosts() {
+        const myPosts = this.state.list.filter(post => post.id === this.props.idProfile)
+        const profile = this.state.profiles.filter(idProfile => (idProfile.id === this.props.idProfile)).pop()
+        return myPosts.map(myPost => 
+            <Post 
+                key={myPost.time} 
+                post={myPost} 
+                profile={profile}
+                onNavigate={() => this.onNavigate(profile)}
+            />
+        )
     }
 
     render() {
-        if (this.state.list === null) 
-            return (<div>Loading...</div>)
-        return(
-            <div>{this.readPosts()}</div>
-        )
+        if (this.state.list === null) {
+            return <div>Loading...</div>
+        } else if (this.props.idProfile == null) {
+            return (
+                <div>
+                    <PostCreate profile={this.props.idProfile}/>
+                    {this.readPosts()}
+                </div>
+            )
+        }
+        else {
+            return (
+                <div>
+                    <PostCreate profile={this.props.idProfile}/>
+                    {this.readMyPosts()}
+                </div>
+            )
+        }
+        
     }
 }
 

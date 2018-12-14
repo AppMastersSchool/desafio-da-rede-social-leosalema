@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
 
-import { getAll, setItem } from './common/storage'
+import { getPosts, savePosts } from './common/storage'
 import data from './data.json'
 import Routes from './main/routes'
 
 import './App.css';
 
 class App extends Component {
-
   componentDidMount() {
-    if (getAll() === null) {
-        const storage = JSON.stringify(data)
-        setItem(storage)
+    if (getPosts() === null) {
+      const storage = JSON.stringify(data)
+      savePosts(storage)
     }
   }
-
+  
   render() {
     return (
       <div className="App">

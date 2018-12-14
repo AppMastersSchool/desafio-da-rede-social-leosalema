@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { getAll } from '../../common/storage'
+import data from '../../data.json'
+import { getPosts, savePosts } from '../../common/storage'
 
 class Login extends Component {
     constructor(props) {
@@ -9,8 +10,12 @@ class Login extends Component {
     }
 
     componentWillMount() {
-        const data = getAll()
-        this.setState({ profiles: data.profile})
+        if (getPosts() === null) {
+            const storage = JSON.stringify(data)
+            savePosts(storage)
+        }
+        const storage = getPosts()
+        this.setState({ profiles: storage.profile})
     }
 
     clickProfile() {
@@ -18,7 +23,6 @@ class Login extends Component {
     }
 
     renderProfiles() {
-        console.log(this.state.profiles)
         return this.state.profiles.map( profile => (
             <div key={profile.id}>
                 <button onClick={this.clickProfile.bind(this)}>

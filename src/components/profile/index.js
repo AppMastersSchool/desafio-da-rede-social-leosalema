@@ -19,6 +19,7 @@ class Profile extends Component {
         return <div>Loading...</div>
       return (
         <div className="App">
+          <button onClick={() => this.props.history.push(`/timeline/${profile.id}`)}>Voltar</button>
           <div>
             <h1>{profile.name}</h1>
             <img src={profile.img_photo} style={{width: '80px', borderRadius: '25%'}} alt=''/>

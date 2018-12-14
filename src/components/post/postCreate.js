@@ -14,16 +14,15 @@ class PostCreate extends Component {
 
     clickPost(){
         const newPost = {
-            post: this.state.text,
+            id: parseInt(this.props.profile),
+            post: this.state.post,
             likes: 0,
-            time: new Date().getTime(),
-            
+            time: new Date().getTime()
         }
-        savePosts(this.state.text)
+        this.props.onCreate(newPost)
     }
 
     render() {
-        console.log(this.props)
         return(
             <div>
                 <input 

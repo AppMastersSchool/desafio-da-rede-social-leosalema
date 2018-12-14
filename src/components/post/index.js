@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { getPosts } from '../../common/storage'
 
 class Post extends Component {
     constructor(props) {
@@ -12,7 +13,18 @@ class Post extends Component {
     }
 
     clickLikes() {
-        this.setState({ likes: this.state.likes + 1 })
+        this.setState({ likes: this.state.likes + 1 }, () => this.saveLikes())
+    }
+
+    saveLikes() {
+        const posts = getPosts()
+        const updatePosts = posts.post.map(savedPost => {
+            if(savedPost.time === this.props.post.time) {
+                savedPost.likes = this.state.likes
+            }
+            return savedPost
+        })
+        console.log('updatePosts', updatePosts)
     }
 
     render() {

@@ -11,21 +11,20 @@ class Login extends Component {
 
     componentWillMount() {
         if (getPosts() === null) {
-            const storage = JSON.stringify(data)
-            savePosts(storage)
+            savePosts(data)
         }
         const storage = getPosts()
         this.setState({ profiles: storage.profile})
     }
 
-    clickProfile() {
-        this.props.history.push('/timeline/')
+    clickProfile(id) {
+        this.props.history.push(`/timeline/${id}`)
     }
 
     renderProfiles() {
-        return this.state.profiles.map( profile => (
+        return this.state.profiles.map(profile => (
             <div key={profile.id}>
-                <button onClick={this.clickProfile.bind(this)}>
+                <button onClick={() => this.clickProfile(profile.id)}>
                     <img style={{width: 100, borderRadius: '50%'}} src={profile.img_photo} alt=''/>
                 </button>
             </div>

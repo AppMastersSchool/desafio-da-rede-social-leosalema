@@ -7,9 +7,11 @@ export function getPost(id) {
     const info = data.profile.filter(profile => {
         return profile.id == id
     }).pop()
+    console.log(info)
     return info
 }
 
 export function savePosts(values) {
-    return JSON.stringify(localStorage.setItem('data', values))
+    const data = JSON.stringify(values)
+    return localStorage.setItem('data', data)
 }

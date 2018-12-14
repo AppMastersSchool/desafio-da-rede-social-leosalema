@@ -9,8 +9,8 @@ import './App.css';
 class App extends Component {
   componentDidMount() {
     if (getPosts() === null) {
-      const storage = JSON.stringify(data)
-      savePosts(storage)
+      console.log(data)
+      savePosts(data)
     }
   }
   

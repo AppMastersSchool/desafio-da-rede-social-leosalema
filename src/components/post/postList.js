@@ -14,14 +14,23 @@ class PostList extends Component {
         this.setState({ list: data.post, profiles: data.profile }, () => console.log(this.state))
     }
 
+    clickPost() {
+        this.props.history.push('/profile/')
+    }
+
     readPosts() {
         return this.state.list.map(post => {
             const profile = this.state.profiles.filter(idProfile => (idProfile.id === post.id))
             return (
                 <div key={post.time}>
                     <p>{post.post}</p>
-                    <p>{profile[0].name}</p>
-                    <img src={profile[0].img_photo} style={{width: 30, borderRadius: '50%'}} alt=''/>
+                    <p onClick={this.clickPost.bind(this)}>{profile[0].name}</p>
+                    <img 
+                        src={profile[0].img_photo} 
+                        style={{width: 30, borderRadius: '50%'}} 
+                        alt=''
+                        onClick={this.clickPost.bind(this)}
+                    />
                 </div>
             )
         })

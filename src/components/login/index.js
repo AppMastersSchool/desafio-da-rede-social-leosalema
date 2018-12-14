@@ -14,7 +14,7 @@ class Login extends Component {
     }
 
     clickProfile() {
-        this.props.history.push('/profile')
+        this.props.history.push('/timeline/')
     }
 
     renderProfiles() {

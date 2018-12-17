@@ -28,7 +28,7 @@ class PostList extends Component {
                     post={post} 
                     profile={profile}
                     onNavigate={() => this.onNavigate(profile)}
-                    getLike={() => this.update(post)}
+                    getLike={() => this.saveLikes(post)}
                 />
             )
         })
@@ -55,13 +55,20 @@ class PostList extends Component {
         savePosts(this.state)
     }
 
+    saveLikes(post) {
+        console.log(post)
+    }
+
     render() {
         if (this.state.post === null) {
             return <div>Loading...</div>
         } else if (this.props.idProfile == null) {
             return (
                 <div>
-                    <PostCreate profile={this.props.match.params.id} onCreate={this.savePost.bind(this)}/>
+                    <PostCreate 
+                        profile={this.props.match.params.id} 
+                        onCreate={this.savePost.bind(this)} 
+                    />
                     {this.readPosts()}
                 </div>
             )

@@ -24,7 +24,7 @@ class Post extends Component {
             }
             return savedPost
         })
-        console.log('updatePosts', updatePosts)
+        return updatePosts
     }
 
     render() {
@@ -40,17 +40,13 @@ class Post extends Component {
                     onClick={() => this.props.onNavigate()}
                 />
                 <h3>{post.post}</h3>
-                <p style={buttonLike}>Likes: {this.state.likes}</p>
+                <p>Likes: {this.state.likes}</p>
                 <button onClick={this.clickLikes.bind(this)}>
                     Likes
                 </button>
             </div>
         )
     }
-}
-
-const buttonLike = {
-
 }
 
 const container = {
